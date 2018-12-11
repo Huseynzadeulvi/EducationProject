@@ -1,0 +1,786 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EducationProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="MentorId" Type="int" Nullable="false" />
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="GroupCategoryId" Type="int" Nullable="false" />
+          <Property Name="GroupStartDate" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupCategory">
+          <Key>
+            <PropertyRef Name="GroupCategoryId" />
+          </Key>
+          <Property Name="GroupCategoryId" Type="int" Nullable="false" />
+          <Property Name="GroupCategoryTypeId" Type="int" Nullable="false" />
+          <Property Name="GroupCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupCategoryType">
+          <Key>
+            <PropertyRef Name="GroupCategoryTypeId" />
+          </Key>
+          <Property Name="GroupCategoryTypeId" Type="int" Nullable="false" />
+          <Property Name="ProgramCategoryTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProgramCategoryTypeStartTime" Type="time" Precision="7" Nullable="false" />
+          <Property Name="ProgramCategoryTypeEndTime" Type="time" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mentor">
+          <Key>
+            <PropertyRef Name="MentorId" />
+          </Key>
+          <Property Name="MentorId" Type="int" Nullable="false" />
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="MentorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MentorSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MentorEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MentorPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="MentorBio" Type="nvarchar(max)" />
+          <Property Name="MentorPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Programming">
+          <Key>
+            <PropertyRef Name="ProgramId" />
+          </Key>
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="ProgramName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProgramDuration" Type="int" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="StudentName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentSurname" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentBirthDate" Type="date" />
+          <Property Name="StudentEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="StudentRegistrationDate" Type="datetime" />
+          <Property Name="StudentPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="int" Nullable="false" />
+          <Property Name="TaskName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskUrl" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskStartDate" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TaskDuration" Type="int" Nullable="false" />
+          <Property Name="TaskPoint" Type="int" Nullable="false" />
+          <Property Name="TaskDetails" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="TaskCategoryId" Type="int" Nullable="false" />
+          <Property Name="StudentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TaskCategory">
+          <Key>
+            <PropertyRef Name="TaskCategoryId" />
+          </Key>
+          <Property Name="TaskCategoryId" Type="int" Nullable="false" />
+          <Property Name="TaskCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="int" Nullable="false" />
+          <Property Name="ProgramId" Type="int" Nullable="false" />
+          <Property Name="TeacherName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherSurname" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherEmail" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="TeacherPhone" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherBio" Type="nvarchar" MaxLength="50" />
+          <Property Name="TeacherPhoto" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="int" Nullable="false" />
+          <Property Name="UserTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_110">
+          <End Role="Programming" Type="Self.Programming" Multiplicity="1" />
+          <End Role="Mentor" Type="Self.Mentor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programming">
+              <PropertyRef Name="ProgramId" />
+            </Principal>
+            <Dependent Role="Mentor">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_129">
+          <End Role="TaskCategory" Type="Self.TaskCategory" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskCategory">
+              <PropertyRef Name="TaskCategoryId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="TaskCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_132">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_48">
+          <End Role="Programming" Type="Self.Programming" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programming">
+              <PropertyRef Name="ProgramId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_51">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_54">
+          <End Role="Mentor" Type="Self.Mentor" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mentor">
+              <PropertyRef Name="MentorId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_57">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_75">
+          <End Role="GroupCategoryType" Type="Self.GroupCategoryType" Multiplicity="1" />
+          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategoryType">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Principal>
+            <Dependent Role="GroupCategory">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_80">
+          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategory">
+              <PropertyRef Name="GroupCategoryId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="GroupCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_86">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_89">
+          <End Role="Programming" Type="Self.Programming" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programming">
+              <PropertyRef Name="ProgramId" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EducationProjectModelStoreContainer">
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupCategory" EntityType="Self.GroupCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupCategoryType" EntityType="Self.GroupCategoryType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mentor" EntityType="Self.Mentor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Programming" EntityType="Self.Programming" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Task" EntityType="Self.Task" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TaskCategory" EntityType="Self.TaskCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserType" EntityType="Self.UserType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_110" Association="Self.FK_110">
+            <End Role="Programming" EntitySet="Programming" />
+            <End Role="Mentor" EntitySet="Mentor" />
+          </AssociationSet>
+          <AssociationSet Name="FK_129" Association="Self.FK_129">
+            <End Role="TaskCategory" EntitySet="TaskCategory" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_132" Association="Self.FK_132">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Task" EntitySet="Task" />
+          </AssociationSet>
+          <AssociationSet Name="FK_48" Association="Self.FK_48">
+            <End Role="Programming" EntitySet="Programming" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_51" Association="Self.FK_51">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="Student" EntitySet="Student" />
+          </AssociationSet>
+          <AssociationSet Name="FK_54" Association="Self.FK_54">
+            <End Role="Mentor" EntitySet="Mentor" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_57" Association="Self.FK_57">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_75" Association="Self.FK_75">
+            <End Role="GroupCategoryType" EntitySet="GroupCategoryType" />
+            <End Role="GroupCategory" EntitySet="GroupCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_80" Association="Self.FK_80">
+            <End Role="GroupCategory" EntitySet="GroupCategory" />
+            <End Role="Group" EntitySet="Group" />
+          </AssociationSet>
+          <AssociationSet Name="FK_86" Association="Self.FK_86">
+            <End Role="UserType" EntitySet="UserType" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_89" Association="Self.FK_89">
+            <End Role="Programming" EntitySet="Programming" />
+            <End Role="Teacher" EntitySet="Teacher" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EducationProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="MentorId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="GroupCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="GroupStartDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Programming" Relationship="Self.FK_48" FromRole="Group" ToRole="Programming" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_51" FromRole="Group" ToRole="Student" />
+          <NavigationProperty Name="Mentor" Relationship="Self.FK_54" FromRole="Group" ToRole="Mentor" />
+          <NavigationProperty Name="Teacher" Relationship="Self.FK_57" FromRole="Group" ToRole="Teacher" />
+          <NavigationProperty Name="GroupCategory" Relationship="Self.FK_80" FromRole="Group" ToRole="GroupCategory" />
+        </EntityType>
+        <EntityType Name="GroupCategory">
+          <Key>
+            <PropertyRef Name="GroupCategoryId" />
+          </Key>
+          <Property Name="GroupCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="GroupCategoryTypeId" Type="Int32" Nullable="false" />
+          <Property Name="GroupCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_80" FromRole="GroupCategory" ToRole="Group" />
+          <NavigationProperty Name="GroupCategoryType" Relationship="Self.FK_75" FromRole="GroupCategory" ToRole="GroupCategoryType" />
+        </EntityType>
+        <EntityType Name="GroupCategoryType">
+          <Key>
+            <PropertyRef Name="GroupCategoryTypeId" />
+          </Key>
+          <Property Name="GroupCategoryTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramCategoryTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProgramCategoryTypeStartTime" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="ProgramCategoryTypeEndTime" Type="Time" Nullable="false" Precision="7" />
+          <NavigationProperty Name="GroupCategories" Relationship="Self.FK_75" FromRole="GroupCategoryType" ToRole="GroupCategory" />
+        </EntityType>
+        <EntityType Name="Mentor">
+          <Key>
+            <PropertyRef Name="MentorId" />
+          </Key>
+          <Property Name="MentorId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="MentorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MentorSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MentorEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="MentorPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MentorBio" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MentorPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_54" FromRole="Mentor" ToRole="Group" />
+          <NavigationProperty Name="Programming" Relationship="Self.FK_110" FromRole="Mentor" ToRole="Programming" />
+        </EntityType>
+        <EntityType Name="Programming">
+          <Key>
+            <PropertyRef Name="ProgramId" />
+          </Key>
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProgramDuration" Type="Int32" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_48" FromRole="Programming" ToRole="Group" />
+          <NavigationProperty Name="Mentors" Relationship="Self.FK_110" FromRole="Programming" ToRole="Mentor" />
+          <NavigationProperty Name="Teachers" Relationship="Self.FK_89" FromRole="Programming" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="StudentId" />
+          </Key>
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="StudentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentBirthDate" Type="DateTime" Precision="0" />
+          <Property Name="StudentEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StudentRegistrationDate" Type="DateTime" Precision="3" />
+          <Property Name="StudentPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_51" FromRole="Student" ToRole="Group" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_132" FromRole="Student" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="TaskId" />
+          </Key>
+          <Property Name="TaskId" Type="Int32" Nullable="false" />
+          <Property Name="TaskName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskStartDate" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskDuration" Type="Int32" Nullable="false" />
+          <Property Name="TaskPoint" Type="Int32" Nullable="false" />
+          <Property Name="TaskDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TaskCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="StudentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_132" FromRole="Task" ToRole="Student" />
+          <NavigationProperty Name="TaskCategory" Relationship="Self.FK_129" FromRole="Task" ToRole="TaskCategory" />
+        </EntityType>
+        <EntityType Name="TaskCategory">
+          <Key>
+            <PropertyRef Name="TaskCategoryId" />
+          </Key>
+          <Property Name="TaskCategoryId" Type="Int32" Nullable="false" />
+          <Property Name="TaskCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Tasks" Relationship="Self.FK_129" FromRole="TaskCategory" ToRole="Task" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="TeacherId" />
+          </Key>
+          <Property Name="TeacherId" Type="Int32" Nullable="false" />
+          <Property Name="ProgramId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeacherSurname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeacherEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TeacherPhone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherBio" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TeacherPhoto" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Groups" Relationship="Self.FK_57" FromRole="Teacher" ToRole="Group" />
+          <NavigationProperty Name="Programming" Relationship="Self.FK_89" FromRole="Teacher" ToRole="Programming" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserType" Relationship="Self.FK_86" FromRole="User" ToRole="UserType" />
+        </EntityType>
+        <EntityType Name="UserType">
+          <Key>
+            <PropertyRef Name="UserTypeId" />
+          </Key>
+          <Property Name="UserTypeId" Type="Int32" Nullable="false" />
+          <Property Name="UserTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_86" FromRole="UserType" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_48">
+          <End Role="Programming" Type="Self.Programming" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programming">
+              <PropertyRef Name="ProgramId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_51">
+          <End Role="Group" Type="Self.Group" Multiplicity="1" />
+          <End Role="Student" Type="Self.Student" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Student">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_54">
+          <End Role="Mentor" Type="Self.Mentor" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Mentor">
+              <PropertyRef Name="MentorId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="MentorId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_57">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="TeacherId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="TeacherId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_80">
+          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="1" />
+          <End Role="Group" Type="Self.Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategory">
+              <PropertyRef Name="GroupCategoryId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="GroupCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_75">
+          <End Role="GroupCategoryType" Type="Self.GroupCategoryType" Multiplicity="1" />
+          <End Role="GroupCategory" Type="Self.GroupCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupCategoryType">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Principal>
+            <Dependent Role="GroupCategory">
+              <PropertyRef Name="GroupCategoryTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_110">
+          <End Role="Programming" Type="Self.Programming" Multiplicity="1" />
+          <End Role="Mentor" Type="Self.Mentor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programming">
+              <PropertyRef Name="ProgramId" />
+            </Principal>
+            <Dependent Role="Mentor">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_89">
+          <End Role="Programming" Type="Self.Programming" Multiplicity="1" />
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Programming">
+              <PropertyRef Name="ProgramId" />
+            </Principal>
+            <Dependent Role="Teacher">
+              <PropertyRef Name="ProgramId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_132">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="StudentId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="StudentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_129">
+          <End Role="TaskCategory" Type="Self.TaskCategory" Multiplicity="1" />
+          <End Role="Task" Type="Self.Task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TaskCategory">
+              <PropertyRef Name="TaskCategoryId" />
+            </Principal>
+            <Dependent Role="Task">
+              <PropertyRef Name="TaskCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_86">
+          <End Role="UserType" Type="Self.UserType" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserType">
+              <PropertyRef Name="UserTypeId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="UserTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EducationProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="GroupCategories" EntityType="Self.GroupCategory" />
+          <EntitySet Name="GroupCategoryTypes" EntityType="Self.GroupCategoryType" />
+          <EntitySet Name="Mentors" EntityType="Self.Mentor" />
+          <EntitySet Name="Programmings" EntityType="Self.Programming" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Tasks" EntityType="Self.Task" />
+          <EntitySet Name="TaskCategories" EntityType="Self.TaskCategory" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserTypes" EntityType="Self.UserType" />
+          <AssociationSet Name="FK_48" Association="Self.FK_48">
+            <End Role="Programming" EntitySet="Programmings" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_51" Association="Self.FK_51">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="Student" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_54" Association="Self.FK_54">
+            <End Role="Mentor" EntitySet="Mentors" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_57" Association="Self.FK_57">
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_80" Association="Self.FK_80">
+            <End Role="GroupCategory" EntitySet="GroupCategories" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
+          <AssociationSet Name="FK_75" Association="Self.FK_75">
+            <End Role="GroupCategoryType" EntitySet="GroupCategoryTypes" />
+            <End Role="GroupCategory" EntitySet="GroupCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_110" Association="Self.FK_110">
+            <End Role="Programming" EntitySet="Programmings" />
+            <End Role="Mentor" EntitySet="Mentors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_89" Association="Self.FK_89">
+            <End Role="Programming" EntitySet="Programmings" />
+            <End Role="Teacher" EntitySet="Teachers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_132" Association="Self.FK_132">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_129" Association="Self.FK_129">
+            <End Role="TaskCategory" EntitySet="TaskCategories" />
+            <End Role="Task" EntitySet="Tasks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_86" Association="Self.FK_86">
+            <End Role="UserType" EntitySet="UserTypes" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EducationProjectModelStoreContainer" CdmEntityContainer="EducationProjectEntities">
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="EducationProjectModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="MentorId" ColumnName="MentorId" />
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="GroupCategoryId" ColumnName="GroupCategoryId" />
+                <ScalarProperty Name="GroupStartDate" ColumnName="GroupStartDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupCategories">
+            <EntityTypeMapping TypeName="EducationProjectModel.GroupCategory">
+              <MappingFragment StoreEntitySet="GroupCategory">
+                <ScalarProperty Name="GroupCategoryId" ColumnName="GroupCategoryId" />
+                <ScalarProperty Name="GroupCategoryTypeId" ColumnName="GroupCategoryTypeId" />
+                <ScalarProperty Name="GroupCategoryName" ColumnName="GroupCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupCategoryTypes">
+            <EntityTypeMapping TypeName="EducationProjectModel.GroupCategoryType">
+              <MappingFragment StoreEntitySet="GroupCategoryType">
+                <ScalarProperty Name="GroupCategoryTypeId" ColumnName="GroupCategoryTypeId" />
+                <ScalarProperty Name="ProgramCategoryTypeName" ColumnName="ProgramCategoryTypeName" />
+                <ScalarProperty Name="ProgramCategoryTypeStartTime" ColumnName="ProgramCategoryTypeStartTime" />
+                <ScalarProperty Name="ProgramCategoryTypeEndTime" ColumnName="ProgramCategoryTypeEndTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mentors">
+            <EntityTypeMapping TypeName="EducationProjectModel.Mentor">
+              <MappingFragment StoreEntitySet="Mentor">
+                <ScalarProperty Name="MentorId" ColumnName="MentorId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="MentorName" ColumnName="MentorName" />
+                <ScalarProperty Name="MentorSurname" ColumnName="MentorSurname" />
+                <ScalarProperty Name="MentorEmail" ColumnName="MentorEmail" />
+                <ScalarProperty Name="MentorPhone" ColumnName="MentorPhone" />
+                <ScalarProperty Name="MentorBio" ColumnName="MentorBio" />
+                <ScalarProperty Name="MentorPhoto" ColumnName="MentorPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Programmings">
+            <EntityTypeMapping TypeName="EducationProjectModel.Programming">
+              <MappingFragment StoreEntitySet="Programming">
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="ProgramName" ColumnName="ProgramName" />
+                <ScalarProperty Name="ProgramDuration" ColumnName="ProgramDuration" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="EducationProjectModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="StudentName" ColumnName="StudentName" />
+                <ScalarProperty Name="StudentSurname" ColumnName="StudentSurname" />
+                <ScalarProperty Name="StudentBirthDate" ColumnName="StudentBirthDate" />
+                <ScalarProperty Name="StudentEmail" ColumnName="StudentEmail" />
+                <ScalarProperty Name="StudentPhone" ColumnName="StudentPhone" />
+                <ScalarProperty Name="StudentRegistrationDate" ColumnName="StudentRegistrationDate" />
+                <ScalarProperty Name="StudentPhoto" ColumnName="StudentPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tasks">
+            <EntityTypeMapping TypeName="EducationProjectModel.Task">
+              <MappingFragment StoreEntitySet="Task">
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="TaskUrl" ColumnName="TaskUrl" />
+                <ScalarProperty Name="TaskStartDate" ColumnName="TaskStartDate" />
+                <ScalarProperty Name="TaskDuration" ColumnName="TaskDuration" />
+                <ScalarProperty Name="TaskPoint" ColumnName="TaskPoint" />
+                <ScalarProperty Name="TaskDetails" ColumnName="TaskDetails" />
+                <ScalarProperty Name="TaskCategoryId" ColumnName="TaskCategoryId" />
+                <ScalarProperty Name="StudentId" ColumnName="StudentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskCategories">
+            <EntityTypeMapping TypeName="EducationProjectModel.TaskCategory">
+              <MappingFragment StoreEntitySet="TaskCategory">
+                <ScalarProperty Name="TaskCategoryId" ColumnName="TaskCategoryId" />
+                <ScalarProperty Name="TaskCategoryName" ColumnName="TaskCategoryName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teachers">
+            <EntityTypeMapping TypeName="EducationProjectModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="TeacherId" ColumnName="TeacherId" />
+                <ScalarProperty Name="ProgramId" ColumnName="ProgramId" />
+                <ScalarProperty Name="TeacherName" ColumnName="TeacherName" />
+                <ScalarProperty Name="TeacherSurname" ColumnName="TeacherSurname" />
+                <ScalarProperty Name="TeacherEmail" ColumnName="TeacherEmail" />
+                <ScalarProperty Name="TeacherPhone" ColumnName="TeacherPhone" />
+                <ScalarProperty Name="TeacherBio" ColumnName="TeacherBio" />
+                <ScalarProperty Name="TeacherPhoto" ColumnName="TeacherPhoto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="EducationProjectModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypes">
+            <EntityTypeMapping TypeName="EducationProjectModel.UserType">
+              <MappingFragment StoreEntitySet="UserType">
+                <ScalarProperty Name="UserTypeId" ColumnName="UserTypeId" />
+                <ScalarProperty Name="UserTypeName" ColumnName="UserTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
